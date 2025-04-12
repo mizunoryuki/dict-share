@@ -1,0 +1,23 @@
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  & > h1 {
+    color: #094067;
+    font-size: 40px;
+  }
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+
+  & > :nth-child(2) {
+    margin-left: auto;
+    height: fit-content;
+  }
+}
