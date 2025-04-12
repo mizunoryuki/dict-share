@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.title}>
-        <Image src={"./titleImage.svg"} alt="title" width={30} height={30} />
+        <Image src={"../titleImage.svg"} alt="title" width={30} height={30} />
         <h1>share-dict</h1>
       </div>
       <Button

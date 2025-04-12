@@ -1,0 +1,19 @@
+.wordContainer {
+  border-radius: 10px;
+  background-color: #094067;
+  color: #fffffe;
+  padding: 8px;
+}
+
+.wordName {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.wordDisc {
+  color: #d8eefe;
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 15px;
+  height: 60px;
+}
