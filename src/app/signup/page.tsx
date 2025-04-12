@@ -1,10 +1,9 @@
-import styles from "./page.module.css";
 import AuthCard from "@/components/AuthCard";
-
-export default function Home() {
+import styles from "./page.module.css";
+export default function SignUp() {
   return (
     <div className={styles.page}>
-      <AuthCard type="signIn" />
+      <AuthCard type="signUp" />
     </div>
   );
 }

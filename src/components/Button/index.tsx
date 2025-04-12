@@ -4,13 +4,13 @@ import styles from "./index.module.css";
 interface Props {
   color: "primary" | "secondary";
   text: string;
-  onClick: () => void;
+  onClickAction: () => void;
 }
 
-export const Button = ({ color = "primary", text, onClick }: Props) => {
+export const Button = ({ color = "primary", text, onClickAction }: Props) => {
   return (
     <button
-      onClick={onClick}
+      onClick={onClickAction}
       className={`${styles.button} ${styles[`button-${color}`]}`}
     >
       {text}

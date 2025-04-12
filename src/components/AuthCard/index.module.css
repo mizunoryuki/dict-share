@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & > label {
+    font-size: 15px;
+    color: #5f6c7b;
+  }
+
+  & > input {
+    font-size: 20px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    border: 2px solid #094067;
+  }
+}
+.linkText {
+  color: #3da9fc;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.linkText:hover {
+  color: #ef4565;
+}
