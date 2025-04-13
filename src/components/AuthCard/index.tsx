@@ -32,7 +32,7 @@ export default function AuthCard({ type }: Props) {
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/mypage");
@@ -65,7 +65,7 @@ export default function AuthCard({ type }: Props) {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Button color="primary" text="ログイン" onClickAction={handleLogin} />
+          <Button color="primary" text="ログイン" onClickAction={handleLogIn} />
           <Link href={"./signup"}>
             <p className={styles.linkText}>新規登録</p>
           </Link>
@@ -95,6 +95,9 @@ export default function AuthCard({ type }: Props) {
             text="サインアップ"
             onClickAction={handleSignUp}
           />
+          <Link href={"./"}>
+            <p className={styles.linkText}>ログイン</p>
+          </Link>
         </AuthForm>
       );
   }

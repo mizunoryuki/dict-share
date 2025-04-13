@@ -1,9 +1,7 @@
 "use client";
 import { Button } from "@/components/Button";
-import DictContainer from "@/components/DictContainer";
 import Header from "@/components/Header";
 import styles from "../page.module.css";
-import WordCard from "@/components/WordCard";
 import WordContainer from "@/components/WordContainer";
 
 interface Word {
