@@ -5,7 +5,8 @@ import styles from "./page.module.css";
 import { Button } from "@/components/Button";
 import { useAuth } from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Modal from "@/components/Modal";
 
 const data = [
   {
@@ -23,6 +24,7 @@ const data = [
 ];
 
 export default function Mypage() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { user, loading } = useAuth();
   const router = useRouter();
 
@@ -52,8 +54,9 @@ export default function Mypage() {
         <Button
           color="secondary"
           text="追加"
-          onClickAction={() => console.log("add")}
+          onClickAction={() => setIsOpen(true)}
         />
+        <Modal isOpen={isOpen} setIsOpenAction={setIsOpen} />
       </div>
     </>
   );
