@@ -16,3 +16,15 @@
     margin: 0 auto 30px auto;
   }
 }
+
+.containerRedirect {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  font-size: 30px;
+  font-weight: bold;
+}
