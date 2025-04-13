@@ -2,6 +2,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../Button";
 import styles from "./index.module.css";
+import { createDictionary } from "@/utils/createData";
 
 interface Props {
   isOpen: boolean;
@@ -15,9 +16,10 @@ export default function Modal({ isOpen, setIsOpenAction }: Props) {
     setIsOpenAction(false);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setIsOpenAction(false);
     //DBに辞書(名前:title)を追加
+    await createDictionary(title);
   };
 
   if (isOpen) {
