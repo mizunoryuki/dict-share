@@ -3,11 +3,15 @@
   background-color: #094067;
   color: #fffffe;
   padding: 8px;
+  max-height: fit-content;
 }
 
 .wordName {
   font-size: 25px;
   font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .wordDisc {
@@ -15,5 +19,6 @@
   font-weight: bold;
   margin-top: 15px;
   font-size: 15px;
-  height: 60px;
+  height: 80px;
+  overflow-y: auto;
 }

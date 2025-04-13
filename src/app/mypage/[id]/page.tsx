@@ -4,6 +4,7 @@ import DictContainer from "@/components/DictContainer";
 import Header from "@/components/Header";
 import styles from "../page.module.css";
 import WordCard from "@/components/WordCard";
+import WordContainer from "@/components/WordContainer";
 
 interface Word {
   name: string;
@@ -22,6 +23,70 @@ const data: Props = {
       name: "DOOM",
       discription: "社会に絶望したニート",
     },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOMDOOMDOOMDOOMDOOMDOOM",
+      discription:
+        "社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOMDOOMDOOMDOOMDOOMDOOM",
+      discription:
+        "社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOMDOOMDOOMDOOMDOOMDOOM",
+      discription:
+        "社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
+    {
+      name: "DOOMDOOMDOOMDOOMDOOMDOOM",
+      discription:
+        "社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート社会に絶望したニート",
+    },
+    {
+      name: "DOOM",
+      discription: "社会に絶望したニート",
+    },
   ],
 };
 
@@ -29,17 +94,7 @@ export default function DictInfo({ title, words }: Props) {
   return (
     <div className={styles.container}>
       <Header />
-      <div>
-        {data.words.map((value, index) => {
-          return (
-            <WordCard
-              name={value.name}
-              discription={value.discription}
-              key={index}
-            />
-          );
-        })}
-      </div>
+      <WordContainer data={data} />
       <Button
         color="secondary"
         text="追加"
