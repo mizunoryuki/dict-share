@@ -1,18 +1,15 @@
 "use client";
 import DictCard from "../DictCard";
 import styles from "./index.module.css";
-interface DataInfo {
-  title: string;
-}
-interface Props {
-  data: DataInfo[];
-}
+import { useAtomValue } from "jotai";
+import { dictListAtom } from "@/atoms/dictAtoms";
 
-export default function DictContainer({ data = [] }: Props) {
-  if (data.length != 0) {
+export default function DictContainer() {
+  const dicts = useAtomValue(dictListAtom);
+  if (dicts.length != 0) {
     return (
       <div className={styles.container}>
-        {data.map((value, index) => {
+        {dicts.map((value, index) => {
           return <DictCard title={value.title} key={index} />;
         })}
       </div>
