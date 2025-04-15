@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebaseAdmin";
 
+//firestoreに保存
 export async function POST(req: NextRequest) {
   const { userId, title, words } = await req.json();
 
@@ -13,6 +14,7 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ result: "success" });
 }
 
+//firestoreから取得
 export async function GET(req: NextRequest) {
   const userId = req.nextUrl.searchParams.get("userId");
 

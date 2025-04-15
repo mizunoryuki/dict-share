@@ -1,6 +1,7 @@
 import { User } from "firebase/auth";
 
 export interface DictInfo {
+  id: string; //id
   title: string; //辞書名
   words: {
     name: string; //単語名
