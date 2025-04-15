@@ -8,21 +8,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 
-const data = [
-  {
-    title: "東京てうsとてすとておあいfじゃおfjへおf；hじゃいfじゃ；おふぃあ",
-  },
-  {
-    title: "英語",
-  },
-  {
-    title: "東京てうsとてすとておあいfじゃおfjへおf；hじゃいfじゃ；おふぃあ",
-  },
-  {
-    title: "英語",
-  },
-];
-
 export default function Mypage() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { user, loading } = useAuth();
@@ -33,6 +18,7 @@ export default function Mypage() {
       router.replace("/");
     }
   }, [user, loading, router]);
+
 
   if (loading) {
     return (
@@ -50,7 +36,7 @@ export default function Mypage() {
     <>
       <div className={styles.container}>
         <Header />
-        <DictContainer data={data} />
+        <DictContainer />
         <Button
           color="secondary"
           text="追加"

@@ -1,13 +1,14 @@
 import { collection, addDoc } from "firebase/firestore";
-import { auth, db } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
+import { DataWithUser } from "@/types/datatype";
 
 //辞書を作成
-export const createDictionary = async (name: string) => {
-  const user = auth.currentUser;
+export const createDictionary = async ({ title, user }: DataWithUser) => {
+  console.log("createDictionary");
   if (!user) throw new Error("ログインしていません");
 
-  await addDoc(collection(db, "dictionaries"), {
-    title: name,
+  await addDoc(collection(db, "users"), {
+    title: title,
     ownerId: user.uid,
     createdAt: new Date(),
   });
