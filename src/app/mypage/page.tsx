@@ -15,7 +15,6 @@ export default function Mypage() {
 
   useEffect(() => {
     if (!loading && !user) {
-      console.log("you must login.if you view mypage.");
       router.replace("/");
     }
   }, [user, loading, router]);

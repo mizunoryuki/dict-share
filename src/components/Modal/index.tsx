@@ -14,42 +14,49 @@ export default function Modal({ isOpen, setIsOpenAction }: Props) {
   const { user } = useAuth();
   const [title, setTitle] = useState<string>("");
   const [, fetchDicts] = useAtom(fetchDictsAtom);
-  if (!isOpen) return null;
 
+  const closeModal = () => setIsOpenAction(false);
   const handleClose = () => {
-    setIsOpenAction(false);
+    closeModal();
   };
 
   const handleClick = async () => {
-    setIsOpenAction(false);
-    if (user) {
-      const userId = user.uid;
-      //DBに辞書(名前:title)を追加
+    if (!user) {
+      console.log("You are not logged in.");
+      return;
+    }
+
+    if (!title) {
+      alert("テキストを記入してください");
+      return;
+    }
+    closeModal();
+
+    try {
       const response = await fetch("/api/dictionaries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title,
-          userId,
+          userId: user.uid,
           words: [],
         }),
       });
 
       if (!response.ok) {
-        console.error("APIエラー", response);
+        const resText = await response.text();
+        console.error(response.status, resText);
         return;
-      } else {
-        try {
-          await fetchDicts(userId);
-        } catch (e) {
-          console.error("辞書の取得に失敗しました", e);
-        }
       }
-    } else {
-      console.log("ログインできていません");
+      await fetchDicts(user.uid);
+    } catch (e) {
+      console.error("failed to fetch data.", e);
+    } finally {
+      setTitle("");
     }
-    setTitle("");
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className={styles.container}>
