@@ -6,7 +6,7 @@ export interface DictInfo {
   words: {
     name: string; //単語名
     discription: string; //説明
-  };
+  }[];
 }
 
 export interface AuthContextType {

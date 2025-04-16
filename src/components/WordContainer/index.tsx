@@ -1,17 +1,14 @@
+import { useAtomValue } from "jotai";
 import WordCard from "../WordCard";
 import styles from "./index.module.css";
-interface Props {
-  data: {
-    title: string;
-    words: { name: string; discription: string }[];
-  };
-}
+import { chooseDictAtom } from "@/atoms/dictAtoms";
 
-export default function WordContainer({ data }: Props) {
-  if (data.words.length != 0) {
+export default function WordContainer() {
+  const chooseDict = useAtomValue(chooseDictAtom);
+  if (chooseDict.words.length != 0) {
     return (
       <div className={styles.container}>
-        {data.words.map((value, index) => {
+        {chooseDict.words.map((value, index) => {
           return (
             <WordCard
               key={index}
@@ -25,7 +22,7 @@ export default function WordContainer({ data }: Props) {
   } else {
     return (
       <div className={styles.container}>
-        <p className={styles.message}>辞書を作成しよう</p>
+        <p className={styles.message}>単語を追加しよう</p>
       </div>
     );
   }
