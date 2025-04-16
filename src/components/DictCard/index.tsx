@@ -16,7 +16,6 @@ export default function DictCard({ dict }: Props) {
 
   const handleChooseDict = () => {
     changeChoose(dict);
-    console.log("set dict");
     router.push(`/mypage/${dict.id}`);
   };
 
