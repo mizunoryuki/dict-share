@@ -4,6 +4,8 @@
   color: #fffffe;
   padding: 8px;
   max-height: fit-content;
+
+  height: 100%;
 }
 
 .wordName {

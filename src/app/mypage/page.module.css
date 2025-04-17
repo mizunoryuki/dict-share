@@ -14,6 +14,9 @@
 
   & > :nth-child(3) {
     margin: 0 auto 30px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
   }
 }
 
