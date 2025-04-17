@@ -1,11 +1,11 @@
 .message {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: #5f6c7b;
   font-size: 40px;
   font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .container {
@@ -15,8 +15,6 @@
   margin: 0 auto;
   border: 3px solid #094067;
   border-radius: 10px;
-
-  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -29,8 +27,11 @@
   column-gap: 15px;
   grid-template-columns: minmax(0, 1fr);
   grid-auto-rows: 140px;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
+
+  position: relative;
+  height: 100%;
 }
 
 @media (min-width: 600px) {

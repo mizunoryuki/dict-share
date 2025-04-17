@@ -6,12 +6,12 @@ import ContainerHeader from "../ContainerHeader";
 
 export default function WordContainer() {
   const chooseDict = useAtomValue(chooseDictAtom);
-  if (chooseDict.words.length != 0) {
-    return (
-      <div className={styles.container}>
-        <ContainerHeader />
-        <div className={styles.cardBox}>
-          {chooseDict.words.map((value, index) => {
+  return (
+    <div className={styles.container}>
+      <ContainerHeader title={chooseDict.title} />
+      <div className={styles.cardBox}>
+        {chooseDict.words.length != 0 ? (
+          chooseDict.words.map((value, index) => {
             return (
               <WordCard
                 key={index}
@@ -19,15 +19,11 @@ export default function WordContainer() {
                 discription={value.discription}
               />
             );
-          })}
-        </div>
+          })
+        ) : (
+          <p className={styles.message}>単語を追加しよう</p>
+        )}
       </div>
-    );
-  } else {
-    return (
-      <div className={styles.container}>
-        <p className={styles.message}>単語を追加しよう</p>
-      </div>
-    );
-  }
+    </div>
+  );
 }

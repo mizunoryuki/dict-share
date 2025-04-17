@@ -1,10 +1,14 @@
 import { Button } from "../Button";
 import styles from "./index.module.css";
 
-export default function ContainerHeader() {
+interface Props {
+  title: string;
+}
+
+export default function ContainerHeader({ title }: Props) {
   return (
     <div className={styles.header}>
-      <h2>辞書タイトル</h2>
+      <h2>{title}</h2>
       <Button
         color="primary"
         text="共有"

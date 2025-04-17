@@ -3,6 +3,12 @@
   flex-direction: row;
   height: fit-content;
 
+  & :nth-child(1) {
+    line-height: 1;
+    font-size: 30px;
+    text-align: center;
+  }
+
   & :nth-child(2) {
     margin-left: auto;
   }
