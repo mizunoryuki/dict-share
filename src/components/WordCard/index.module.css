@@ -8,6 +8,20 @@
   height: 100%;
 }
 
+.nameBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & > :nth-child(2) {
+    margin-left: auto;
+    transition: 0.2s;
+  }
+
+  & > :nth-child(2):hover {
+    scale: 0.9;
+  }
+}
 .wordName {
   font-size: 25px;
   font-weight: bold;
