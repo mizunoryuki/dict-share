@@ -10,7 +10,7 @@ export default function WordContainer() {
     <div className={styles.container}>
       <ContainerHeader title={chooseDict.title} />
       <div className={styles.cardBox}>
-        {chooseDict.words.length != 0 ? (
+        {chooseDict.words.length > 1 ? (
           chooseDict.words.map((value, index) => {
             return (
               <WordCard
