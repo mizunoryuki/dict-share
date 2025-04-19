@@ -3,12 +3,11 @@ import { adminDb } from "@/lib/firebaseAdmin";
 
 //firestoreに保存
 export async function POST(req: NextRequest) {
-  const { userId, title, words } = await req.json();
+  const { userId, title } = await req.json();
 
   await adminDb.collection("users").doc(userId).collection("dictionaries").add({
     title,
-    words,
-    createdAt: new Date(),
+    date: new Date(),
   });
 
   return NextResponse.json({ result: "success" });
@@ -22,7 +21,7 @@ export async function GET(req: NextRequest) {
     .collection("users")
     .doc(userId!)
     .collection("dictionaries")
-    .orderBy("createdAt", "desc")
+    .orderBy("date", "desc")
     .get();
 
   const dictionaries = snapshot.docs.map((doc) => ({

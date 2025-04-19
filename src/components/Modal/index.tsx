@@ -39,7 +39,6 @@ export default function Modal({ isOpen, setIsOpenAction }: Props) {
         body: JSON.stringify({
           title,
           userId: user.uid,
-          words: [],
         }),
       });
 
