@@ -8,7 +8,7 @@ interface Props {
 export default function ContainerHeader({ title }: Props) {
   return (
     <div className={styles.header}>
-      <h2>{title}</h2>
+      <h2 className={styles.headerTitle}>{title}</h2>
       <Button
         color="primary"
         text="共有"
