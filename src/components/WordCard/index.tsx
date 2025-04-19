@@ -9,13 +9,15 @@ export default function WordCard({ name, discription }: Props) {
     <div className={styles.wordContainer}>
       <div className={styles.nameBox}>
         <p className={styles.wordName}>{name}</p>
-        <Image
-          src={"../editImage.svg"}
-          alt="edit"
-          width={30}
-          height={30}
-          onClick={() => console.log("edit card")}
-        />
+        <div className={styles.iconBox}>
+          <Image
+            src={"../closeImage.svg"}
+            alt="edit"
+            width={30}
+            height={30}
+            onClick={() => console.log("delete card")}
+          />
+        </div>
       </div>
       <div className={styles.wordDisc}>{discription}</div>
     </div>
