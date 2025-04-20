@@ -15,7 +15,6 @@ export default function DictContainer() {
   useEffect(() => {
     if (user) {
       fetchDicts(user.uid);
-      console.log("successfully fetch data.");
     }
   }, [fetchDicts, user]);
 

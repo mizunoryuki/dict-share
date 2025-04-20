@@ -20,9 +20,6 @@ export default function WordContainer() {
     //単語取得
     if (user && chooseDict.id) {
       fetchWords(user.uid, chooseDict.id);
-      console.log("successfully fetch wordsdata.");
-    } else {
-      console.log(`${user} : ${chooseDict.id}`);
     }
   }, [chooseDict.id, fetchWords, user]);
   return (

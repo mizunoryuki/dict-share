@@ -17,7 +17,6 @@ export default function DictInfo() {
   const handleBackpage = () => {
     router.push("/mypage");
     setChooseWords([]);
-    console.log("clear wordsAtom");
   };
   return (
     <div className={styles.container}>

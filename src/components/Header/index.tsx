@@ -13,7 +13,7 @@ export default function Header() {
       signOut(auth);
       router.push("./");
     } catch (error) {
-      console.log(`ログアウト失敗:${error}`);
+      console.log(`failed to logged out:${error}`);
     }
   };
 

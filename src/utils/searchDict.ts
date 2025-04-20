@@ -8,6 +8,5 @@ import { DictTitle } from "@/types/datatype";
  */
 export default function searchDicts(data: DictTitle[], id: string) {
   const filterdArray = data.filter((item) => item.id === id); //１要素だけ取得
-  console.log(filterdArray[0]);
   return filterdArray[0];
 }
