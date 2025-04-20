@@ -1,5 +1,5 @@
 "use client";
-import { DictInfo } from "@/types/datatype";
+import { DictTitle } from "@/types/datatype";
 import { Button } from "../Button";
 import styles from "./index.module.css";
 import { useRouter } from "next/navigation";
@@ -7,7 +7,7 @@ import { useAtom } from "jotai";
 import { changeChooseAtom } from "@/atoms/dictAtoms";
 
 interface Props {
-  dict: DictInfo;
+  dict: DictTitle;
 }
 
 export default function DictCard({ dict }: Props) {

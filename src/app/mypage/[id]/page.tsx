@@ -6,20 +6,25 @@ import WordContainer from "@/components/WordContainer";
 import { useState } from "react";
 import WordModal from "@/components/WordModal";
 import { useRouter } from "next/navigation";
+import { useSetAtom } from "jotai";
+import { chooseDictWordsAtom } from "@/atoms/dictAtoms";
 
 export default function DictInfo() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const router = useRouter();
+  const setChooseWords = useSetAtom(chooseDictWordsAtom);
+
+  const handleBackpage = () => {
+    router.push("/mypage");
+    setChooseWords([]);
+    console.log("clear wordsAtom");
+  };
   return (
     <div className={styles.container}>
       <Header />
       <WordContainer />
       <div>
-        <Button
-          color="primary"
-          text="戻る"
-          onClickAction={() => router.push("/mypage")}
-        />
+        <Button color="primary" text="戻る" onClickAction={handleBackpage} />
         <Button
           color="secondary"
           text="追加"

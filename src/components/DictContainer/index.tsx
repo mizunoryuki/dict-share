@@ -5,7 +5,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { dictListAtom, fetchDictsAtom } from "@/atoms/dictAtoms";
 import { useAuth } from "@/context/AuthProvider";
 import { useEffect } from "react";
-import { DictInfo } from "@/types/datatype";
+import { DictTitle } from "@/types/datatype";
 
 export default function DictContainer() {
   const { user } = useAuth();
@@ -22,7 +22,7 @@ export default function DictContainer() {
   return (
     <div className={styles.container}>
       {dicts.length !== 0 ? (
-        dicts.map((value: DictInfo, index: number) => {
+        dicts.map((value: DictTitle, index: number) => {
           return <DictCard dict={value} key={index} />;
         })
       ) : (

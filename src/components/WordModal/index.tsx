@@ -1,17 +1,11 @@
 "use client";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../Button";
 import styles from "./index.module.css";
 import { useAuth } from "@/context/AuthProvider";
-import {
-  changeChooseAtom,
-  chooseDictAtom,
-  dictListAtom,
-  fetchDictsAtom,
-} from "@/atoms/dictAtoms";
+import { chooseDictAtom, fetchWordsAtom } from "@/atoms/dictAtoms";
 import { useAtom, useAtomValue } from "jotai";
 import "./index.module.css";
-import searchDicts from "@/utils/searchDict";
 
 interface Props {
   isOpen: boolean;
@@ -22,13 +16,7 @@ export default function WordModal({ isOpen, setIsOpenAction }: Props) {
   const [name, setName] = useState<string>("");
   const [disc, setDisc] = useState<string>("");
   const chooseDict = useAtomValue(chooseDictAtom);
-  const dictList = useAtomValue(dictListAtom);
-  const [, fetchDicts] = useAtom(fetchDictsAtom);
-  const [, fetchChooseDict] = useAtom(changeChooseAtom);
-
-  useEffect(() => {
-    fetchChooseDict(searchDicts(dictList, chooseDict.id));
-  }, [chooseDict.id, dictList, fetchChooseDict]);
+  const [, fetchWords] = useAtom(fetchWordsAtom);
 
   const closeModal = () => setIsOpenAction(false);
   const handleClose = () => {
@@ -65,7 +53,7 @@ export default function WordModal({ isOpen, setIsOpenAction }: Props) {
         console.error(response.status, resText);
         return;
       }
-      await fetchDicts(user.uid);
+      await fetchWords(user.uid, chooseDict.id);
     } catch (e) {
       console.error("failed to fetch data.", e);
     } finally {
