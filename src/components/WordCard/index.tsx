@@ -18,7 +18,6 @@ export default function WordCard({ data }: Props) {
       return;
     }
     try {
-      //dictIdの辞書に単語追加
       const response = await fetch(`/api/words`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -36,7 +35,7 @@ export default function WordCard({ data }: Props) {
       }
       await fetchWords(user.uid, chooseDict.id);
     } catch (e) {
-      console.error("failed to fetch data.", e);
+      console.error("failed to delete word.", e);
     }
   };
 

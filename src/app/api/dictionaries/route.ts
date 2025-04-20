@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebaseAdmin";
+import { deleteDoc, doc } from "firebase/firestore";
 
 //firestoreに保存
 export async function POST(req: NextRequest) {
@@ -30,4 +31,17 @@ export async function GET(req: NextRequest) {
   }));
 
   return NextResponse.json({ dictionaries });
+}
+
+export async function DELETE(req: NextRequest) {
+  const { userId, dictId } = await req.json();
+
+  await adminDb
+    .collection("users")
+    .doc(userId)
+    .collection("dictionaries")
+    .doc(dictId)
+    .delete();
+
+  return NextResponse.json({ result: "success" });
 }
