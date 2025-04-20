@@ -31,10 +31,7 @@ export default function WordContainer() {
       <div className={styles.cardBox}>
         {chooseDictWords.length >= 1 ? (
           chooseDictWords.map((value, index) => {
-            const { name, discription } = value;
-            return (
-              <WordCard key={index} name={name} discription={discription} />
-            );
+            return <WordCard key={index} data={value} />;
           })
         ) : (
           <p className={styles.message}>単語を追加しよう</p>

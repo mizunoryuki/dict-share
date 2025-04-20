@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebaseAdmin";
 import { db } from "@/lib/firebase";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore";
 
 //firestoreに保存
 export async function POST(req: NextRequest) {
@@ -41,9 +41,25 @@ export async function GET(req: NextRequest) {
   const word = snapshot.empty
     ? []
     : snapshot.docs.map((doc) => ({
-        id: doc.id,
+        wordId: doc.id,
         ...doc.data(),
       }));
 
   return NextResponse.json(word);
+}
+
+export async function DELETE(req: NextRequest) {
+  const { userId, dictId, wordId } = await req.json();
+  const wordCollectionRef = doc(
+    db,
+    "users",
+    userId,
+    "dictionaries",
+    dictId,
+    "words",
+    wordId
+  );
+
+  await deleteDoc(wordCollectionRef);
+  return NextResponse.json({ result: "success" });
 }
