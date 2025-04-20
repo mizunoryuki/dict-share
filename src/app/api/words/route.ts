@@ -1,25 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebaseAdmin";
-import { db } from "@/lib/firebase";
-import { collection, deleteDoc, doc, setDoc } from "firebase/firestore";
 
 //firestoreに保存
 export async function POST(req: NextRequest) {
   const { userId, dictId, name, discription } = await req.json();
 
-  const wordsCollectionRef = collection(
-    db,
-    "users",
-    userId,
-    "dictionaries",
-    dictId,
-    "words"
-  );
-  await setDoc(doc(wordsCollectionRef), {
-    name,
-    discription,
-    date: new Date(),
-  });
+  await adminDb
+    .collection("users")
+    .doc(userId)
+    .collection("dictionaries")
+    .doc(dictId)
+    .collection("words")
+    .add({
+      name,
+      discription,
+      date: new Date(),
+    });
 
   return NextResponse.json({ result: "success" });
 }
@@ -50,16 +46,13 @@ export async function GET(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const { userId, dictId, wordId } = await req.json();
-  const wordCollectionRef = doc(
-    db,
-    "users",
-    userId,
-    "dictionaries",
-    dictId,
-    "words",
-    wordId
-  );
-
-  await deleteDoc(wordCollectionRef);
+  await adminDb
+    .collection("users")
+    .doc(userId)
+    .collection("dictionaries")
+    .doc(dictId)
+    .collection("words")
+    .doc(wordId)
+    .delete();
   return NextResponse.json({ result: "success" });
 }
