@@ -18,3 +18,20 @@ export interface DataWithUser {
   user: User | null;
   title: string;
 }
+
+export interface DictTitle {
+  id: string;
+  title: string;
+}
+
+export interface DictWord {
+  name: string; //単語名
+  discription: string; //説明
+}
+
+export interface Word {
+	name:string;
+	discription:string;
+	wordId:string;
+	date : Date;
+}

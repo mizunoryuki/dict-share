@@ -15,9 +15,7 @@ export async function POST(req: NextRequest) {
     dictId,
     "words"
   );
-  const docRef = doc(wordsCollectionRef);
-  await setDoc(docRef, {
-    wordId: docRef.id,
+  await setDoc(doc(wordsCollectionRef), {
     name,
     discription,
     date: new Date(),
@@ -40,12 +38,12 @@ export async function GET(req: NextRequest) {
     .orderBy("date", "desc")
     .get();
 
-  const dictionaries = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  const word = snapshot.empty
+    ? []
+    : snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-  console.log(dictionaries);
-
-  return NextResponse.json({ dictionaries });
+  return NextResponse.json(word);
 }
