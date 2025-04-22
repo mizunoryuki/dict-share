@@ -24,7 +24,7 @@ export default function WordContainer() {
   }, [chooseDict.id, fetchWords, user]);
   return (
     <div className={styles.container}>
-      <ContainerHeader title={chooseDict.title} />
+      <ContainerHeader title={chooseDict.title} dictId={chooseDict.id} />
       <div className={styles.cardBox}>
         {chooseDictWords.length >= 1 ? (
           chooseDictWords.map((value, index) => {

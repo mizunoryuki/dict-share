@@ -30,8 +30,8 @@ export interface DictWord {
 }
 
 export interface Word {
-	name:string;
-	discription:string;
-	wordId:string;
-	date : Date;
+  name: string;
+  discription: string;
+  wordId: string;
+  date: Date;
 }

@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 30px;
+
+  & > :nth-child(1) {
+    margin-top: 30px;
+  }
+
+  & > :nth-child(2) {
+    flex-grow: 1;
+  }
+
+  & > :nth-child(3) {
+    margin: 0 auto 30px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    height: fit-content;
+  }
+}
+
+.containerRedirect {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  font-size: 30px;
+  font-weight: bold;
+}
