@@ -5,7 +5,7 @@ import { adminDb } from "@/lib/firebaseAdmin";
 export async function POST(req: NextRequest) {
   const { userId, dictId, name, discription } = await req.json();
 
-  await adminDb
+  const docRef = await adminDb
     .collection("users")
     .doc(userId)
     .collection("dictionaries")
@@ -16,6 +16,10 @@ export async function POST(req: NextRequest) {
       discription,
       date: new Date(),
     });
+
+  await docRef.update({
+    id: docRef.id,
+  });
 
   return NextResponse.json({ result: "success" });
 }

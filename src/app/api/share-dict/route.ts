@@ -25,11 +25,21 @@ export async function GET(req: NextRequest) {
     console.log(doc.data());
     const wordsSnapshot = await doc.ref.collection("words").get();
 
+    if (wordsSnapshot.empty) {
+      return NextResponse.json({ error: "words not found" });
+    }
+
+    wordsSnapshot.docs.map((value) => {
+      console.log(value.data());
+    });
+
     const words = wordsSnapshot.docs.map((value) => ({
       name: value.data().name,
       discription: value.data().discription,
+      wordId: value.data().id,
+      date: value.data().date,
     }));
-    console.log(words);
+    // console.log(words);
 
     return NextResponse.json({
       dictName: doc.data().title,
