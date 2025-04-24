@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
     .add({
       title,
       date: new Date(),
+      isPublic: false,
     });
 
   //idも保存
