@@ -6,7 +6,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 
-export default function Header() {
+interface Props {
+  isHide?: boolean;
+}
+
+export default function Header({ isHide = true }: Props) {
   const router = useRouter();
   const handleLogOut = () => {
     try {
@@ -23,7 +27,11 @@ export default function Header() {
         <Image src={"../titleImage.svg"} alt="title" width={30} height={30} />
         <h1>share-dict</h1>
       </div>
-      <Button color="secondary" text="Logout" onClickAction={handleLogOut} />
+      {isHide ? (
+        <Button color="secondary" text="Logout" onClickAction={handleLogOut} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
