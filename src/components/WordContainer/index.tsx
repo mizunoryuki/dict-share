@@ -7,10 +7,12 @@ import {
   fetchWordsAtom,
 } from "@/atoms/dictAtoms";
 import ContainerHeader from "../ContainerHeader";
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useAuth } from "@/context/AuthProvider";
-
-export default function WordContainer() {
+interface Props {
+  setIsOpenAction: Dispatch<SetStateAction<boolean>>;
+}
+export default function WordContainer({ setIsOpenAction }: Props) {
   const { user } = useAuth();
   const chooseDict = useAtomValue(chooseDictAtom);
   const chooseDictWords = useAtomValue(chooseDictWordsAtom);
@@ -24,7 +26,11 @@ export default function WordContainer() {
   }, [chooseDict.id, fetchWords, user]);
   return (
     <div className={styles.container}>
-      <ContainerHeader title={chooseDict.title} dictId={chooseDict.id} />
+      <ContainerHeader
+        title={chooseDict.title}
+        dictId={chooseDict.id}
+        setIsOpen={setIsOpenAction}
+      />
       <div className={styles.cardBox}>
         {chooseDictWords.length >= 1 ? (
           chooseDictWords.map((value, index) => {

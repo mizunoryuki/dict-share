@@ -41,6 +41,9 @@ export default function SharePage() {
         }
       };
       fetchData(dictId);
+    } else {
+      setIsError(true);
+      setErrorText("idが選択されていません");
     }
   }, [dictId]);
 

@@ -8,9 +8,11 @@ import WordModal from "@/components/WordModal";
 import { useRouter } from "next/navigation";
 import { useSetAtom } from "jotai";
 import { chooseDictWordsAtom } from "@/atoms/dictAtoms";
+import ShareModal from "@/components/ShareModal";
 
 export default function DictInfo() {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [isOpenShareModal, setIsOpenShareModal] = useState<boolean>(false);
   const router = useRouter();
   const setChooseWords = useSetAtom(chooseDictWordsAtom);
 
@@ -21,7 +23,7 @@ export default function DictInfo() {
   return (
     <div className={styles.container}>
       <Header />
-      <WordContainer />
+      <WordContainer setIsOpenAction={setIsOpenShareModal} />
       <div>
         <Button color="primary" text="戻る" onClickAction={handleBackpage} />
         <Button
@@ -31,6 +33,10 @@ export default function DictInfo() {
         />
       </div>
       <WordModal isOpen={isOpenModal} setIsOpenAction={setIsOpenModal} />
+      <ShareModal
+        isOpen={isOpenShareModal}
+        setIsOpenAction={setIsOpenShareModal}
+      />
     </div>
   );
 }
