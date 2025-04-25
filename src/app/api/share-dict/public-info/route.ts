@@ -18,24 +18,27 @@ export async function GET(req: NextRequest) {
       .collection("dictionaries")
       .doc(dictId);
     const docSnap = await docRef.get();
-    if (!docSnap.exists) {
+    if (!docSnap.exists || !docSnap.data()) {
       return NextResponse.json({
         error: "data not found",
       });
     }
 
-    if (docSnap.data() && docSnap.data() !== undefined) {
-      const flag = docSnap.data()?.isPublic;
-      console.log(flag);
-
-      return NextResponse.json({
-        result: flag,
-      });
-    } else {
-      return NextResponse.json({
-        error: "not found",
-      });
+    const data = docSnap.data();
+    if (!data || typeof data.isPublic !== "boolean") {
+      return NextResponse.json(
+        {
+          error: "invalid dictionary data",
+        },
+        { status: 400 }
+      );
     }
+    const flag = docSnap.data()?.isPublic;
+    console.log(flag);
+
+    return NextResponse.json({
+      result: flag,
+    });
   } catch (e) {
     console.error(e);
     return NextResponse.json(
@@ -84,7 +87,7 @@ export async function POST(req: NextRequest) {
     }
     //isPublicを反転する
     await docRef.update({
-      isPublic: data.isPublic,
+      isPublic: !data.isPublic,
     });
 
     return NextResponse.json(
