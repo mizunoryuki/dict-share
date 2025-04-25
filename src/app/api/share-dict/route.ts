@@ -39,7 +39,6 @@ export async function GET(req: NextRequest) {
       wordId: value.data().id,
       date: value.data().date,
     }));
-    // console.log(words);
 
     return NextResponse.json({
       dictName: doc.data().title,

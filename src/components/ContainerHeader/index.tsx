@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import { Button } from "../Button";
 import styles from "./index.module.css";
 import { Dispatch, SetStateAction } from "react";
@@ -9,12 +8,9 @@ interface Props {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ContainerHeader({ title, dictId, setIsOpen }: Props) {
-  const router = useRouter();
-
+export default function ContainerHeader({ title, setIsOpen }: Props) {
   const handleClick = () => {
     setIsOpen(true);
-    //router.push(`/shared?id=${dictId}`);
   };
   return (
     <div className={styles.header}>
