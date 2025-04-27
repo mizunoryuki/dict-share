@@ -54,6 +54,18 @@ export default function ShareModal({ isOpen, setIsOpenAction }: Props) {
   const handleClose = () => {
     setIsOpenAction(false);
   };
+
+  const handleCopyText = () => {
+    const urlText = `${window.location.origin}/shared?dictId=${dictId}`;
+    navigator.clipboard.writeText(urlText).then(
+      () => {
+        console.log("successfully copy URL");
+      },
+      () => {
+        console.log("failed to copy URL");
+      }
+    );
+  };
   if (!isOpen) return null;
   return (
     <div className={styles.container}>
@@ -72,14 +84,12 @@ export default function ShareModal({ isOpen, setIsOpenAction }: Props) {
           </div>
           <div className={styles.content}>
             {isChecked ? (
-              <div className={styles.urlBox}>
-                <p className={styles.url}>URL</p>
-                <button
-                  className={styles.copyButton}
-                  onClick={() => console.log("copy")}
-                >
-                  copy
-                </button>
+              <div className={styles.copyBox}>
+                <Button
+                  color="primary"
+                  text="共有URLをコピー"
+                  onClickAction={handleCopyText}
+                />
               </div>
             ) : (
               <></>

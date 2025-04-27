@@ -44,31 +44,21 @@
 }
 
 .content {
-  width: auto;
   height: 100px;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
+  margin-top: 30px;
 }
 
-.urlBox {
+.copyBox {
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 5px;
-}
-.url {
-  border-bottom: 2px solid #094067;
-  padding: 8px;
-  flex-grow: 1;
-}
-.copyButton {
-  border: 2px solid #094067;
-  border-radius: 10px;
-  padding: 8px;
-  background-color: #fffffe;
-  cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 600px) {
