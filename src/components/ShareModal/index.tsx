@@ -56,7 +56,7 @@ export default function ShareModal({ isOpen, setIsOpenAction }: Props) {
   };
 
   const handleCopyText = () => {
-    const urlText = `${window.location.origin}/shared?dictId=${dictId}`;
+    const urlText = `${window.location.origin}/shared?id=${dictId}`;
     navigator.clipboard.writeText(urlText).then(
       () => {
         console.log("successfully copy URL");
