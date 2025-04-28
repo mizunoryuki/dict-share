@@ -1,7 +1,6 @@
 .wordContainer {
   border-radius: 10px;
-  background-color: #094067;
-  color: #fffffe;
+  border: 3px solid #094067;
   padding: 8px;
   max-height: fit-content;
 
@@ -16,7 +15,7 @@
 
 .iconBox {
   padding: 2px;
-  background-color: #fffffe;
+  border: 2px solid #094067;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -40,7 +39,6 @@
 }
 
 .wordDisc {
-  color: #d8eefe;
   font-weight: bold;
   margin-top: 15px;
   font-size: 15px;
