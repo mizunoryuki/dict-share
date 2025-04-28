@@ -60,9 +60,11 @@ export default function ShareModal({ isOpen, setIsOpenAction }: Props) {
     navigator.clipboard.writeText(urlText).then(
       () => {
         console.log("successfully copy URL");
+        alert("コピー成功!!");
       },
       () => {
         console.log("failed to copy URL");
+        alert("コピー失敗!!");
       }
     );
   };
