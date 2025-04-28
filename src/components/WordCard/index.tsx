@@ -7,8 +7,9 @@ import { chooseDictAtom, fetchWordsAtom } from "@/atoms/dictAtoms";
 import { useAtom, useAtomValue } from "jotai";
 interface Props {
   data: Word;
+  isHide?: boolean;
 }
-export default function WordCard({ data }: Props) {
+export default function WordCard({ data, isHide = true }: Props) {
   const { user } = useAuth();
   const chooseDict = useAtomValue(chooseDictAtom);
   const [, fetchWords] = useAtom(fetchWordsAtom);
@@ -43,15 +44,17 @@ export default function WordCard({ data }: Props) {
     <div className={styles.wordContainer}>
       <div className={styles.nameBox}>
         <p className={styles.wordName}>{data.name}</p>
-        <div className={styles.iconBox}>
-          <Image
-            src={"../closeImage.svg"}
-            alt="edit"
-            width={30}
-            height={30}
-            onClick={handleDelete}
-          />
-        </div>
+        {isHide && (
+          <div className={styles.iconBox}>
+            <Image
+              src={"../closeImage.svg"}
+              alt="edit"
+              width={30}
+              height={30}
+              onClick={handleDelete}
+            />
+          </div>
+        )}
       </div>
       <div className={styles.wordDisc}>{data.discription}</div>
     </div>

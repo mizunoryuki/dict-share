@@ -1,17 +1,26 @@
+.message {
+  position: absolute;
+  color: #5f6c7b;
+  font-size: 40px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .container {
+  padding: 8px;
+  width: 90%;
+  height: 50%;
+  margin: 0 auto;
+  border: 3px solid #094067;
+  border-radius: 10px;
+
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  gap: 30px;
-
-  & > :nth-child(1) {
-    margin-top: 30px;
-  }
-
-  & > :nth-child(2) {
-    flex-grow: 1;
-  }
+  gap: 15px;
 }
+
 .cardBox {
   display: grid;
   row-gap: 15px;
