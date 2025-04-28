@@ -22,16 +22,15 @@ export default function ShareWordContainer({
 }: Props) {
   return (
     <div className={styles.container}>
-      <h2>{data.dictName}</h2>
+      <h1>{data.dictName}</h1>
       <div className={styles.cardBox}>
         {isError ? (
           <p className={styles.message}>{errorText}</p>
-        ) : data.words.length >= 1 ? (
+        ) : (
+          data.words.length >= 1 &&
           data.words.map((value, index) => {
             return <WordCard key={index} data={value} isHide={false} />;
           })
-        ) : (
-          <p className={styles.message}>単語が追加されていません</p>
         )}
       </div>
     </div>
