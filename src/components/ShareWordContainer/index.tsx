@@ -11,19 +11,27 @@ interface Props {
       date: Date;
     }[];
   };
+  isError: boolean;
+  errorText: string;
 }
 
-export default function ShareWordContainer({ data }: Props) {
+export default function ShareWordContainer({
+  data,
+  isError,
+  errorText,
+}: Props) {
   return (
     <div className={styles.container}>
       <h2>{data.dictName}</h2>
       <div className={styles.cardBox}>
-        {data.words.length >= 1 ? (
+        {isError ? (
+          <p className={styles.message}>{errorText}</p>
+        ) : data.words.length >= 1 ? (
           data.words.map((value, index) => {
             return <WordCard key={index} data={value} isHide={false} />;
           })
         ) : (
-          <p className={styles.message}>単語を追加しよう</p>
+          <p className={styles.message}>単語が追加されていません</p>
         )}
       </div>
     </div>

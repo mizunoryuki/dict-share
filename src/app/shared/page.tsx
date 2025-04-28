@@ -51,13 +51,11 @@ export default function SharePage() {
   return (
     <div className={styles.container}>
       <Header isHide={false} />
-      {isError ? (
-        <div>
-          <p>{errorText}</p>
-        </div>
-      ) : (
-          <ShareWordContainer data={dictData} />
-      )}
+      <ShareWordContainer
+        data={dictData}
+        errorText={errorText}
+        isError={isError}
+      />
     </div>
   );
 }
