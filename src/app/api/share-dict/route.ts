@@ -35,10 +35,6 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    wordsSnapshot.docs.map((value) => {
-      console.log(value.data());
-    });
-
     const words = wordsSnapshot.docs.map((value) => ({
       name: value.data().name,
       discription: value.data().discription,

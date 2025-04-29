@@ -34,7 +34,6 @@ export async function GET(req: NextRequest) {
       );
     }
     const flag = docSnap.data()?.isPublic;
-    console.log(flag);
 
     return NextResponse.json({
       result: flag,

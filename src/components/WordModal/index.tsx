@@ -59,7 +59,6 @@ export default function WordModal({ isOpen, setIsOpenAction }: Props) {
         return;
       }
       fetchDictData();
-      console.log("")
     } catch (e) {
       console.error("failed to fetch data.", e);
     } finally {
