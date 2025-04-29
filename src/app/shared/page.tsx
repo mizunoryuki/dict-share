@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import ShareWordContainer from "@/components/ShareWordContainer";
 interface Data {
+  id: string;
   dictName: string;
   words: {
     name: string;
@@ -17,10 +18,13 @@ interface Data {
 export default function SharePage() {
   const searchParams = useSearchParams();
   const dictId = searchParams.get("id");
-  const [dictData, setDictData] = useState<Data>({ dictName: "", words: [] });
+  const [dictData, setDictData] = useState<Data>({
+    id: "",
+    dictName: "",
+    words: [],
+  });
   const [isError, setIsError] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
-
   useEffect(() => {
     if (dictId) {
       const fetchData = async (dictId: string) => {
@@ -33,7 +37,7 @@ export default function SharePage() {
                 setIsError(true);
                 setErrorText(data.error);
               } else {
-                setDictData(data);
+                setDictData({ id: dictId, ...data });
               }
             });
         } catch (error) {

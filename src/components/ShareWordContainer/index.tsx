@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 
 interface Props {
   data: {
+    id: string;
     dictName: string;
     words: {
       name: string;
@@ -26,11 +27,19 @@ export default function ShareWordContainer({
       <div className={styles.cardBox}>
         {isError ? (
           <p className={styles.message}>{errorText}</p>
-        ) : (
-          data.words.length >= 1 &&
+        ) : data.words.length >= 1 ? (
           data.words.map((value, index) => {
-            return <WordCard key={index} data={value} isHide={false} />;
+            return (
+              <WordCard
+                key={index}
+                data={value}
+                isHide={false}
+                dictId={data.id}
+              />
+            );
           })
+        ) : (
+          <p className={styles.message}>単語がありません</p>
         )}
       </div>
     </div>
