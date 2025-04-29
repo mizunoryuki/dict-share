@@ -6,19 +6,15 @@ import WordContainer from "@/components/WordContainer";
 import { useState } from "react";
 import WordModal from "@/components/WordModal";
 import { useRouter } from "next/navigation";
-import { useSetAtom } from "jotai";
-import { chooseDictWordsAtom } from "@/atoms/dictAtoms";
 import ShareModal from "@/components/ShareModal";
 
 export default function DictInfo() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isOpenShareModal, setIsOpenShareModal] = useState<boolean>(false);
   const router = useRouter();
-  const setChooseWords = useSetAtom(chooseDictWordsAtom);
 
   const handleBackpage = () => {
     router.push("/mypage");
-    setChooseWords([]);
   };
   return (
     <div className={styles.container}>

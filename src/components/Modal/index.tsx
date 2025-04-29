@@ -3,8 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../Button";
 import styles from "./index.module.css";
 import { useAuth } from "@/context/AuthProvider";
-import { fetchDictsAtom } from "@/atoms/dictAtoms";
-import { useAtom } from "jotai";
+import { useDictTitle } from "@/hooks/useDictTitle";
 
 interface Props {
   isOpen: boolean;
@@ -13,7 +12,7 @@ interface Props {
 export default function Modal({ isOpen, setIsOpenAction }: Props) {
   const { user } = useAuth();
   const [title, setTitle] = useState<string>("");
-  const [, fetchDicts] = useAtom(fetchDictsAtom);
+  const { fetchDicts } = useDictTitle(user?.uid);
 
   const closeModal = () => setIsOpenAction(false);
   const handleClose = () => {
@@ -47,7 +46,7 @@ export default function Modal({ isOpen, setIsOpenAction }: Props) {
         console.error(response.status, resText);
         return;
       }
-      await fetchDicts(user.uid);
+      fetchDicts();
     } catch (e) {
       console.error("failed to fetch data.", e);
     } finally {

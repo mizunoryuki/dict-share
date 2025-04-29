@@ -3,22 +3,19 @@ import { DictTitle } from "@/types/datatype";
 import { Button } from "../Button";
 import styles from "./index.module.css";
 import { useRouter } from "next/navigation";
-import { useAtom } from "jotai";
-import { changeChooseAtom, fetchDictsAtom } from "@/atoms/dictAtoms";
 import { useAuth } from "@/context/AuthProvider";
+import { useDictTitle } from "@/hooks/useDictTitle";
 
 interface Props {
   dict: DictTitle;
 }
 
 export default function DictCard({ dict }: Props) {
-  const [, changeChoose] = useAtom(changeChooseAtom);
   const { user } = useAuth();
-  const [, fetchDicts] = useAtom(fetchDictsAtom);
+  const { fetchDicts } = useDictTitle(user?.uid);
   const router = useRouter();
 
   const handleChooseDict = () => {
-    changeChoose(dict);
     router.push(`/mypage/${dict.id}`);
   };
 
@@ -42,7 +39,7 @@ export default function DictCard({ dict }: Props) {
         console.error(response.status, resText);
         return;
       }
-      await fetchDicts(user.uid);
+      fetchDicts();
     } catch (e) {
       console.error("failed to delete dict.", e);
     }
