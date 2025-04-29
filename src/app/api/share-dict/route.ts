@@ -23,7 +23,10 @@ export async function GET(req: NextRequest) {
     }
     const doc = snapshot.docs[0];
     console.log(doc.data());
-    const wordsSnapshot = await doc.ref.collection("words").get();
+    const wordsSnapshot = await doc.ref
+      .collection("words")
+      .orderBy("date", "desc")
+      .get();
 
     if (wordsSnapshot.empty) {
       return NextResponse.json({
