@@ -6,4 +6,6 @@
 - Firebase
   - Authentication
   - Firestore
-- Jotai
+
+## Deploy
+https://dict-share-yu56-g2qn9igt0-mimimimimis-projects-aac5bb56.vercel.app/
