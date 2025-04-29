@@ -26,7 +26,10 @@ export async function GET(req: NextRequest) {
     const wordsSnapshot = await doc.ref.collection("words").get();
 
     if (wordsSnapshot.empty) {
-      return NextResponse.json({ error: "words not found" });
+      return NextResponse.json({
+        dictName: doc.data().title,
+        words: [],
+      });
     }
 
     wordsSnapshot.docs.map((value) => {

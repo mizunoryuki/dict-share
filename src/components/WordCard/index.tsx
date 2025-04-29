@@ -3,19 +3,22 @@ import Image from "next/image";
 import styles from "./index.module.css";
 import { Word } from "@/types/datatype";
 import { useAuth } from "@/context/AuthProvider";
-import { chooseDictAtom, fetchWordsAtom } from "@/atoms/dictAtoms";
-import { useAtom, useAtomValue } from "jotai";
 interface Props {
   data: Word;
   isHide?: boolean;
+  dictId: string;
+  deleteFuncAction?: () => void;
 }
-export default function WordCard({ data, isHide = true }: Props) {
+export default function WordCard({
+  data,
+  dictId,
+  isHide = true,
+  deleteFuncAction,
+}: Props) {
   const { user } = useAuth();
-  const chooseDict = useAtomValue(chooseDictAtom);
-  const [, fetchWords] = useAtom(fetchWordsAtom);
   const handleDelete = async () => {
-    if (!user || !chooseDict || !data.wordId) {
-      console.log(user?.uid, chooseDict.id, data.wordId);
+    if (!user || !data.wordId || !deleteFuncAction) {
+      console.log(user?.uid, dictId, data.wordId);
       return;
     }
     try {
@@ -24,7 +27,7 @@ export default function WordCard({ data, isHide = true }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: user.uid,
-          dictId: chooseDict.id,
+          dictId: dictId,
           wordId: data.wordId,
         }),
       });
@@ -33,8 +36,10 @@ export default function WordCard({ data, isHide = true }: Props) {
         const resText = await response.text();
         console.error(response.status, resText);
         return;
+      } else {
+        deleteFuncAction();
+        console.log("delete");
       }
-      await fetchWords(user.uid, chooseDict.id);
     } catch (e) {
       console.error("failed to delete word.", e);
     }

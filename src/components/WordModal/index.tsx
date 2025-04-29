@@ -3,9 +3,9 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../Button";
 import styles from "./index.module.css";
 import { useAuth } from "@/context/AuthProvider";
-import { chooseDictAtom, fetchWordsAtom } from "@/atoms/dictAtoms";
-import { useAtom, useAtomValue } from "jotai";
 import "./index.module.css";
+import { useParams } from "next/navigation";
+import { useDictData } from "@/hooks/useDictData";
 
 interface Props {
   isOpen: boolean;
@@ -13,10 +13,10 @@ interface Props {
 }
 export default function WordModal({ isOpen, setIsOpenAction }: Props) {
   const { user } = useAuth();
+  const params = useParams<{ id: string }>();
   const [name, setName] = useState<string>("");
   const [disc, setDisc] = useState<string>("");
-  const chooseDict = useAtomValue(chooseDictAtom);
-  const [, fetchWords] = useAtom(fetchWordsAtom);
+  const { fetchDictData } = useDictData(user?.uid, params.id);
 
   const closeModal = () => setIsOpenAction(false);
   const handleClose = () => {
@@ -26,6 +26,11 @@ export default function WordModal({ isOpen, setIsOpenAction }: Props) {
   const handleClick = async () => {
     if (!user) {
       console.log("You are not logged in.");
+      return;
+    }
+
+    if (!params.id) {
+      console.log("invaild URL");
       return;
     }
 
@@ -42,7 +47,7 @@ export default function WordModal({ isOpen, setIsOpenAction }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: user.uid,
-          dictId: chooseDict.id,
+          dictId: params.id,
           name,
           discription: disc,
         }),
@@ -53,7 +58,8 @@ export default function WordModal({ isOpen, setIsOpenAction }: Props) {
         console.error(response.status, resText);
         return;
       }
-      await fetchWords(user.uid, chooseDict.id);
+      fetchDictData();
+      console.log("")
     } catch (e) {
       console.error("failed to fetch data.", e);
     } finally {
