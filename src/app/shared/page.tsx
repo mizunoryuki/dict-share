@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import SharePage from "@/components/SharePage"; // 先ほどの "use client" がついたコンポーネント
+import SharePage from "@/components/SharePage";
 
 export default function SharedPage() {
   return (
