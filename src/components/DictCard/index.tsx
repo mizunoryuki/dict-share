@@ -4,15 +4,14 @@ import { Button } from "../Button";
 import styles from "./index.module.css";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthProvider";
-import { useDictTitle } from "@/hooks/useDictTitle";
 
 interface Props {
   dict: DictTitle;
+  deleteAction?: () => void;
 }
 
-export default function DictCard({ dict }: Props) {
+export default function DictCard({ dict, deleteAction }: Props) {
   const { user } = useAuth();
-  const { fetchDicts } = useDictTitle(user?.uid);
   const router = useRouter();
 
   const handleChooseDict = () => {
@@ -20,7 +19,7 @@ export default function DictCard({ dict }: Props) {
   };
 
   const handleDeleteDict = async () => {
-    if (!user || !dict) {
+    if (!user || !dict || !deleteAction) {
       return;
     }
 
@@ -39,7 +38,7 @@ export default function DictCard({ dict }: Props) {
         console.error(response.status, resText);
         return;
       }
-      fetchDicts();
+      deleteAction();
     } catch (e) {
       console.error("failed to delete dict.", e);
     }

@@ -38,7 +38,6 @@ export default function WordCard({
         return;
       } else {
         deleteFuncAction();
-        console.log("delete");
       }
     } catch (e) {
       console.error("failed to delete word.", e);
